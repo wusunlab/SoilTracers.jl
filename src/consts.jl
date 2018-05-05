@@ -16,6 +16,6 @@ const g = 9.806_65
 const atm = 1.01325e5
 
 """Molar mass of water [kg mol⁻¹]."""
-const M_w = 18.015_28
+const M_w = 18.015_28e-3
 
 end

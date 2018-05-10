@@ -1,5 +1,7 @@
 # SoilTracers.jl
 
+[![Travis](https://travis-ci.org/wusunlab/SoilTracers.jl.svg?branch=master)](https://travis-ci.org/wusunlab/SoilTracers.jl)
+
 A model to simulate soil–atmosphere exchange of trace gases.
 
 **Warning: under construction; no stable build yet!**
@@ -14,7 +16,6 @@ N<sub>2</sub>O, etc.).
 ## Dependencies
 
 * Julia >= 0.6
-* DifferentialEquations.jl >= 4.0
 
 ## Installation
 

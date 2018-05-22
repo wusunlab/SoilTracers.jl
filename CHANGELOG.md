@@ -10,7 +10,7 @@ Versioning](http://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-* Unit tests for `SoilTracers.Constants`.
+* Unit tests for `SoilTracers.Constants` and `SoilTracers.Tracers`.
 * Travis CI build test.
 * Functions that calculate water properties (for aqueous reactions).
 

@@ -93,8 +93,8 @@ function diffus_air(species::String, temp, pressure=Constants.atm)
         error("species '", species, "' not supported")
     end
 
-    return diffus_air_stp[species] * (Constants.atm / pressure) *
-        (temp / Constants.T_0) ^ 1.81
+    return (@. diffus_air_stp[species] * (Constants.atm / pressure) *
+            (temp / Constants.T_0) ^ 1.81)
 end  # function diffus_air
 
 
@@ -140,8 +140,8 @@ function diffus_water(species::String, temp)
     end
 
     # diffus_water_stp[species] is a pair of (pre-exp factor, E_act)
-    return diffus_water_stp[species].first *
-        exp(- diffus_water_stp[species].second / (Constants.R * temp))
+    return (@. diffus_water_stp[species].first *
+            exp(- diffus_water_stp[species].second / (Constants.R * temp)))
 end  # function diffus_water
 
 
@@ -196,8 +196,9 @@ function diffus_soil_air(species::String, texture::String, temp, theta_sat,
 
     # tortuosity in soil air
     theta_a = theta_sat - theta_w
-    tau_a = theta_a * (theta_a / theta_sat) ^ (3. / soil_shape_params[texture])
-    return diffus_air(species, temp, pressure) * theta_a * tau_a
+    tau_a = (@. theta_a * (theta_a / theta_sat) ^
+             (3. / soil_shape_params[texture]))
+    return (@. diffus_air(species, temp, pressure) * theta_a * tau_a)
 end  # function diffus_soil_air
 
 
@@ -247,9 +248,9 @@ function diffus_soil_water(species::String, texture::String, temp, theta_sat,
     end
 
     # tortuosity in soil water
-    tau_w = (theta_w / theta_sat) ^ (soil_shape_params[texture] / 3. - 1.) *
-        theta_w
-    return diffus_water(species, temp) * theta_w * tau_w
+    tau_w = (@. theta_w * (theta_w / theta_sat) ^
+             (soil_shape_params[texture] / 3. - 1.))
+    return (@. diffus_water(species, temp) * theta_w * tau_w)
 end  # function diffus_soil_water
 
 

@@ -13,4 +13,5 @@ end
 
 @time @testset "Test PhysChem functions" begin
     include("test_physchem/test_diffus.jl")
+    include("test_physchem/test_solub.jl")
 end

@@ -1,5 +1,3 @@
-include("../consts.jl")
-
 """
     water_density(temp)
 
@@ -31,7 +29,7 @@ function water_density(temp)
     # critical temperature and density
     T_crit = 647.096
     rho_crit = 322.
-    # an empirically fitted polynomial
+
     theta = 1. - temp / T_crit
     rho_ratio = 1. + 1.99274064 * theta ^ (1. / 3.) +
         1.09965342 * theta ^ (2. / 3.) - 0.510839303 * theta ^ (5. / 3.) -
@@ -69,7 +67,6 @@ julia> water_dissoc(298.15)
 ```
 """
 function water_dissoc(temp)
-    # empirical parameters
     n = 6.
     alpha_0 = -0.864671
     alpha_1 = 8659.19
@@ -78,7 +75,7 @@ function water_dissoc(temp)
     beta_1 = -56.8534
     beta_2 = -0.375754
 
-    rho_w = water_density(temp) * 1e-3  # in g cm^-3 here
+    rho_w = water_density(temp) * 1e-3  # convert to g cm^-3 here
     temp_sq = temp * temp
 
     Z = rho_w * exp(alpha_0 + alpha_1 / temp +

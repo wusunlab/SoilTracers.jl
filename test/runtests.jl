@@ -7,11 +7,8 @@ println("Starting tests")
     include("test_consts.jl")
 end
 
-@time @testset "Test H2O functions" begin
-    include("test_h2o.jl")
-end
-
 @time @testset "Test PhysChem functions" begin
     include("test_physchem/test_diffus.jl")
     include("test_physchem/test_solub.jl")
+    include("test_physchem/test_water.jl")
 end

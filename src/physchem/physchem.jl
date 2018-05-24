@@ -3,6 +3,8 @@ __precompile__()
 """Physical chemistry functions."""
 module PhysChem
 
+using SoilTracers: Constants
+
 include("thermodyn.jl")
 include("diffus.jl")
 include("solub.jl")

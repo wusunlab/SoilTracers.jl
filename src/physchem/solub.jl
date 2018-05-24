@@ -1,6 +1,3 @@
-include("../consts.jl")
-
-
 function solub_co2(temp, pressure=Constants.atm, salinity=0.)
     # coefficients are from Weiss (1974) fitted to Murray & Riley (1971) data
     t = temp * 1e-2  # a transferred scale

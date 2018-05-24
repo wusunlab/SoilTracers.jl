@@ -1,3 +1,5 @@
+__precompile__()
+
 """A collection of physical constants used in the SoilTracers model."""
 module Constants
 

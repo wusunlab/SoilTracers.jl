@@ -1,6 +1,3 @@
-include("../consts.jl")
-
-
 """Gas diffusivity in air under STP condition [m^2 s^-1]."""
 const diffus_air_stp = Dict{String, Float64}(
     "h2o" => 2.178e-5,

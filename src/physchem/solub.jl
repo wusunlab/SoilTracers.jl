@@ -29,20 +29,20 @@ Bunsen solubility coefficient of COS [dimensionless].
 # Examples
 
 ```jldoctest
-julia> solub_co2(298.15)
-0.8310045730830151
+julia> @printf "%g" solub_co2(298.15)
+0.831005
 ```
 """
 function solub_co2(temp, salinity=0.)
     t = temp * 1e-2  # a transferred scale
-    kcp_co2 = @. exp(-58.0931 + 90.5069 / t + 22.2940 * log(t) +
+    kcp_co2 = exp(-58.0931 + 90.5069 / t + 22.2940 * log(t) +
                      salinity * (0.027766 - 0.025888 * t + 0.0050578 * t * t))
     # Note: kcp = c_aq / p_i [mol L^-1 atm^-1], where p_i is the partial
     # pressure. To convert it to the Bunsen solubility [dimensionless],
     # multiply kcp by the air molar concentration at the standard pressure
     # [mol m^-3]. There is no pressure dependence because it cancels out.
-    air_conc = @. Constants.atm / (Constants.R * temp)
-    return @. kcp_co2 * 1e3 / air_conc
+    air_conc = Constants.atm / (Constants.R * temp)
+    return kcp_co2 * 1e3 / air_conc
 end
 
 
@@ -73,10 +73,10 @@ Bunsen solubility coefficient of COS [dimensionless].
 # Examples
 
 ```jldoctest
-julia> solub_cos(298.15)
-0.48759826544380036
+julia> @printf "%g" solub_cos(298.15)
+0.487598
 ```
 """
 function solub_cos(temp)
-    return @. temp * exp(4050.32 / temp - 20.0007)
+    return temp * exp(4050.32 / temp - 20.0007)
 end

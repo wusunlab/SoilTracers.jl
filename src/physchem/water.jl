@@ -21,8 +21,8 @@ Calculate water density as a function of temperature (`temp`).
 # Examples
 
 ```jldoctest
-julia> water_density(298.15)
-996.9993666156083
+julia> @printf "%g" water_density(298.15)
+996.999
 ```
 """
 function water_density(temp)
@@ -62,8 +62,8 @@ Calculate water dissociation constant (pK_w) as a function of temperature.
 # Examples
 
 ```jldoctest
-julia> water_dissoc(298.15)
-13.994884354781636
+julia> @printf "%g" water_dissoc(298.15)
+13.9949
 ```
 """
 function water_dissoc(temp)

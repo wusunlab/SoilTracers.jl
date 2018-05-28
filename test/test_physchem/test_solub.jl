@@ -1,5 +1,8 @@
+#=
 using SoilTracers
 using Base.Test
+=#
+
 
 # test solubility functions
 

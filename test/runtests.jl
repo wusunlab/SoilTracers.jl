@@ -11,4 +11,5 @@ end
     include("test_physchem/test_diffus.jl")
     include("test_physchem/test_solub.jl")
     include("test_physchem/test_water.jl")
+    include("test_physchem/test_rxn.jl")
 end

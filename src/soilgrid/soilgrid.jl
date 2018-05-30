@@ -38,11 +38,11 @@ struct FVGrid <: AbstractSoilGrid
             gridfields, ["grid_node", "grid_top", "grid_bottom", "grid_size"])
 
         if level <= 0
-            error("Number of grid levels must be a positive integer!")
+            throw(ArgumentError("Number of grid levels must be positive!"))
         end
 
         if top == bottom
-            error("Top and bottom depths cannot be the same!")
+            throw(ArgumentError("Top and bottom depths cannot be the same!"))
         end
 
         # ensure top boundary depth < bottom boundary depth
@@ -73,7 +73,7 @@ function getprofile(g::T, name::Symbol) where T <: AbstractSoilGrid
     if name in g.profiles.colindex.names
         return g.profiles[name]
     else
-        error("The soil grid has no attribute of $name\!")
+        throw(ArgumentError("The soil grid has no attribute of \"$name\"\!"))
     end
 end
 
@@ -83,7 +83,7 @@ function setprofile!(g::T, name::Symbol, val) where T <: AbstractSoilGrid
     if name in g.profiles.colindex.names
         g.profiles[name] = val
     else
-        error("The soil grid has no attribute of $name\!")
+        throw(ArgumentError("The soil grid has no attribute of \"$name\"\!"))
     end
 end
 
@@ -91,7 +91,8 @@ end
 """Add the vertical profile of a variable in a soil grid."""
 function addprofile!(g::T, name::Symbol, val=0.0) where T <: AbstractSoilGrid
     if name in g.profiles.colindex.names
-        error("The attribute $name already exists in the soil grid!")
+        throw(ArgumentError(
+            "The attribute \"$name\" already exists in the soil grid!"))
     else
         g.profiles[name] = val
     end
@@ -103,7 +104,7 @@ function delprofile!(g::T, name::Symbol) where T <: AbstractSoilGrid
     if name in g.profiles.colindex.names
         delete!(g.profiles, name)
     else
-        error("The soil grid has no attribute of $name\!")
+        throw(ArgumentError("The soil grid has no attribute of \"$name\"\!"))
     end
 end
 

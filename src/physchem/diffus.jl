@@ -87,7 +87,7 @@ Diffusivity of the gas in air [m^2 s^-1].
 """
 function diffus_air(species::String, temp, pressure=Constants.atm)
     if !haskey(diffus_air_stp, species)
-        error("species '", species, "' not supported")
+        throw(ArgumentError("species '" * species * "' not supported"))
     end
 
     return @. (diffus_air_stp[species] * (Constants.atm / pressure) *
@@ -133,7 +133,7 @@ Diffusivity of the gas in water [m^2 s^-1].
 """
 function diffus_water(species::String, temp)
     if !haskey(diffus_water_stp, species)
-        error("species '", species, "' not supported")
+        throw(ArgumentError("species \"" * species * "\" not supported"))
     end
 
     # diffus_water_stp[species] is a pair of (pre-exp factor, E_act)
@@ -188,7 +188,7 @@ Diffusivity of the gas in soil air [m^2 s^-1].
 function diffus_soil_air(species::String, texture::String, temp, theta_sat,
                          theta_w, pressure=Constants.atm)
     if !haskey(soil_shape_params, texture)
-        error("soil texture '", texture, "' not supported")
+        throw(ArgumentError("soil texture \"" * texture * "\" not supported"))
     end
 
     # tortuosity in soil air
@@ -241,7 +241,7 @@ Diffusivity of the gas in soil water [m^2 s^-1].
 function diffus_soil_water(species::String, texture::String, temp, theta_sat,
                            theta_w)
     if !haskey(soil_shape_params, texture)
-        error("soil texture '", texture, "' not supported")
+        throw(ArgumentError("soil texture \"" * texture * "\" not supported"))
     end
 
     # tortuosity in soil water
@@ -294,11 +294,11 @@ Dual-phase diffusivity of the gas in soil [m^2 s^-1].
 function diffus_soil(species::String, texture::String, temp, theta_sat,
                      theta_w, pressure=Constants.atm)
     if !haskey(soil_shape_params, texture)
-        error("soil texture '", texture, "' not supported")
+        throw(ArgumentError("soil texture \"" * texture * "\" not supported"))
     end
 
     if !(haskey(diffus_air_stp, species) && haskey(diffus_water_stp, species))
-        error("species '", species, "' not supported")
+        throw(ArgumentError("species \"" * species * "\" not supported"))
     end
 
     return diffus_soil_water(species, texture, temp, theta_sat, theta_w) +

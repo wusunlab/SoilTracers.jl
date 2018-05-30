@@ -6,7 +6,7 @@ Calculate CO2 solubility in natural water.
 # Parameters
 
 * `temp`: Temperature in Kelvin.
-* `salinity` (optional): Salinity in per mil mass fraction (g kg^-1 seawater).
+* `salinity` (*optional*): Salinity in per mil mass fraction (g kg^-1 seawater).
 
 # Returns
 
@@ -20,11 +20,11 @@ Bunsen solubility coefficient of COS [dimensionless].
 
 [MR71] Murray, C. N. and Riley, J. P. (1971). The solubility of gases
     in distilled water and seawater--IV. Carbon dioxide. *Deep-Sea Res.*, 18,
-    533--541. <https://doi.org/10.1016/0011-7471(71)90077-5>
+    533--541. <https://doi.org/10.1016/0011-7471(71)90077-5>.
 
 [W74] Weiss, R. F. (1974). Carbon dioxide in water and seawater: the solubility
     of a non-ideal gas. *Mar. Chem.*, 2, 203--215.
-    <https://doi.org/10.1016/0304-4203(74)90015-2>
+    <https://doi.org/10.1016/0304-4203(74)90015-2>.
 
 # Examples
 
@@ -68,7 +68,7 @@ Bunsen solubility coefficient of COS [dimensionless].
 [E89] Elliott, S., Lu, E., and Rowland, F. S. (1989). Rates and
     mechanisms for the hydrolysis of carbonyl sulfide in natural waters.
     *Environ. Sci. Tech*. 23(4), 458--461.
-    <https://doi.org/10.1021/es00181a011>
+    <https://doi.org/10.1021/es00181a011>.
 
 # Examples
 

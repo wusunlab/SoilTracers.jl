@@ -8,7 +8,7 @@ COS abiotic hydrolysis rate in natural waters. Applicable range: temperature
 
 * `temp`: Temperature in Kelvin.
 * `pH`: pH value. Default is 7.
-* `seawater` (optional): If `true`, calculate COS hydrolysis rate in the
+* `seawater` (*optional*): If `true`, calculate COS hydrolysis rate in the
   seawater [RC93]. If `false` (default), caculate COS hydrolysis rate in the
   fresh water [E89].
 

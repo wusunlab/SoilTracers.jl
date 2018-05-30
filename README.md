@@ -16,10 +16,15 @@ N<sub>2</sub>O, etc.).
 ## Dependencies
 
 * Julia >= 0.6
+* DataFrames.jl >= 0.10.1
 
 ## Installation
 
-[TO BE ADDED]
+Run the following command in the Julia REPL to install the development version
+
+```julia
+Pkg.clone("https://github.com/wusunlab/SoilTracers.jl")
+```
 
 ## License
 

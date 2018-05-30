@@ -13,7 +13,6 @@ const diffus_air_stp = Dict{String, Float64}(
     "n2" => 1.788e-5,
     "o2" => 1.820e-5,
     "cos" => 1.381e-5 / 1.21)
-diffus_air_stp["ocs"] = diffus_air_stp["cos"]  # alias
 
 
 """
@@ -32,7 +31,6 @@ const diffus_water_stp = Dict{String, Pair{Float64, Float64}}(
     "cos" => Pair(4.735872481253359e-6, 19336.20405260121),
     "co" => Pair(0.407e-4, 24518.24),
     "no" => Pair(39.8e-4, 34978.24))
-diffus_water_stp["ocs"] = diffus_water_stp["cos"]  # alias
 
 
 """Clapp-Hornberger shape parameters for tortuosity effect."""
@@ -62,7 +60,7 @@ and COS.
 
 * `species`: Chemical name of the gas species to be evaluated. In lower case.
 * `temp`: Temperature in Kelvin.
-* `pressure` (optional): Ambient pressure in Pascal. Default is standard
+* `pressure` (*optional*): Ambient pressure in Pascal. Default is the standard
   atmospheric pressure.
 
 # Returns
@@ -78,12 +76,12 @@ Diffusivity of the gas in air [m^2 s^-1].
 [M98] Massman, W. J. (1998). A review of the molecular diffusivities of
     H2O, CO2, CH4, CO, O3, SO2, NH3, N2O, NO, and NO2 in air, O2 and N2
     near STP. *Atmos. Environ.*, 32(6), 1111--1127.
-    <https://doi.org/10.1016/S1352-2310(97)00391-9>
+    <https://doi.org/10.1016/S1352-2310(97)00391-9>.
 
 [S10] Seibt, U. et al. (2010). A kinetic analysis of leaf uptake of COS
     and its relation to transpiration, photosynthesis and carbon isotope
     fractionation. *Biogeosci.*, 7, 333--341.
-    <https://doi.org/10.5194/bg-7-333-2010>
+    <https://doi.org/10.5194/bg-7-333-2010>.
 """
 function diffus_air(species::String, temp, pressure=Constants.atm)
     if !haskey(diffus_air_stp, species)
@@ -119,17 +117,17 @@ Diffusivity of the gas in water [m^2 s^-1].
 
 [J87] Jähne, B. et al. (1987). Measurement of the diffusion
     coefficients of sparingly soluble gases in water. *J. Geophys. Res.*,
-    92(C10), 10767--10776. <https://doi.org/10.1029/JC092iC10p10767>
+    92(C10), 10767--10776. <https://doi.org/10.1029/JC092iC10p10767>.
 
 [WH68] Wise, D. L. and Houghton, G. (1968). Diffusion coefficients of
     neon, krypton, xenon, carbon monoxide and nitric oxide in water
     at 10-6O C. *Chem. Eng. Sci.*, 23, 1211--1216.
-    <https://doi.org/10.1016/0009-2509(68)89029-3>
+    <https://doi.org/10.1016/0009-2509(68)89029-3>.
 
 [UFUA96] Ulshöfer, V. S., Flöck, O. R., Uher, G., and Andreae, M. O.
     (1996). Photochemical production and air-sea exchange of sulfide in
     the eastern Mediterranean Sea. *Mar. Chem.*, 53, 25--39.
-    <https://doi.org/10.1016/0304-4203(96)00010-2>
+    <https://doi.org/10.1016/0304-4203(96)00010-2>.
 """
 function diffus_water(species::String, temp)
     if !haskey(diffus_water_stp, species)
@@ -158,7 +156,7 @@ and COS.
 * `temp`: Temperature in Kelvin.
 * `theta_sat`: Total porosity of the soil [m^3 m^-3].
 * `theta_w`: Water-filled porosity of the soil [m^3 m^-3].
-* `pressure` (optional): Ambient pressure in Pascal. Default is standard
+* `pressure` (*optional*): Ambient pressure in Pascal. Default is the standard
   atmospheric pressure.
 
 # Returns
@@ -177,13 +175,13 @@ Diffusivity of the gas in soil air [m^2 s^-1].
 
 [CH78] Clapp, R. B. and Hornberger, G. M. (1978). Empirical equations
     for some soil hydraulic properties. *Water Resources Res.*, 14(4),
-    601--604. <https://doi.org/10.1029/WR014i004p00601>
+    601--604. <https://doi.org/10.1029/WR014i004p00601>.
 
 [M03] Moldrup, P., Olesen, T., Komatsu, T, Yoshikawa, S, Schjønning, P, and
     Rolston, D. E. (2003). Modeling diffusion and reaction in soils: X. A
     unifying model for solute and gas diffusivity in unsaturated soil. *Soil
     Sci.*, 168(5), 321--337.
-    <https://doi.org/10.1097/01.ss.0000070907.55992.3c>
+    <https://doi.org/10.1097/01.ss.0000070907.55992.3c>.
 """
 function diffus_soil_air(species::String, texture::String, temp, theta_sat,
                          theta_w, pressure=Constants.atm)
@@ -230,13 +228,13 @@ Diffusivity of the gas in soil water [m^2 s^-1].
 
 [CH78] Clapp, R. B. and Hornberger, G. M. (1978). Empirical equations
     for some soil hydraulic properties. *Water Resources Res.*, 14(4),
-    601--604. <https://doi.org/10.1029/WR014i004p00601>
+    601--604. <https://doi.org/10.1029/WR014i004p00601>.
 
 [M03] Moldrup, P., Olesen, T., Komatsu, T, Yoshikawa, S, Schjønning, P, and
     Rolston, D. E. (2003). Modeling diffusion and reaction in soils: X. A
     unifying model for solute and gas diffusivity in unsaturated soil. *Soil
     Sci.*, 168(5), 321--337.
-    <https://doi.org/10.1097/01.ss.0000070907.55992.3c>
+    <https://doi.org/10.1097/01.ss.0000070907.55992.3c>.
 """
 function diffus_soil_water(species::String, texture::String, temp, theta_sat,
                            theta_w)
@@ -266,7 +264,7 @@ Supported gases include CO2, CO, NO, CH4, and COS.
 * `temp`: Temperature in Kelvin.
 * `theta_sat`: Total porosity of the soil [m^3 m^-3].
 * `theta_w`: Water-filled porosity of the soil [m^3 m^-3].
-* `pressure` (optional): Ambient pressure in Pascal. Default is standard
+* `pressure` (*optional*): Ambient pressure in Pascal. Default is the standard
   atmospheric pressure.
 
 # Returns
@@ -283,13 +281,13 @@ Dual-phase diffusivity of the gas in soil [m^2 s^-1].
 
 [CH78] Clapp, R. B. and Hornberger, G. M. (1978). Empirical equations
     for some soil hydraulic properties. *Water Resources Res.*, 14(4),
-    601--604. <https://doi.org/10.1029/WR014i004p00601>
+    601--604. <https://doi.org/10.1029/WR014i004p00601>.
 
 [M03] Moldrup, P., Olesen, T., Komatsu, T, Yoshikawa, S, Schjønning, P, and
     Rolston, D. E. (2003). Modeling diffusion and reaction in soils: X. A
     unifying model for solute and gas diffusivity in unsaturated soil. *Soil
     Sci.*, 168(5), 321--337.
-    <https://doi.org/10.1097/01.ss.0000070907.55992.3c>
+    <https://doi.org/10.1097/01.ss.0000070907.55992.3c>.
 """
 function diffus_soil(species::String, texture::String, temp, theta_sat,
                      theta_w, pressure=Constants.atm)

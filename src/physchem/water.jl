@@ -16,7 +16,7 @@ Calculate water density as a function of temperature (`temp`).
 [WP02] Wagner, W. and Pruß, A. (2002). The IAPWS Formulation 1995 for the
     Thermodynamic Properties of Ordinary Water Substance for General and
     Scientific Use. *J. Phys. Chem. Ref. Data*, 31, 387--535.
-    <https://doi.org/10.1063/1.1461829>
+    <https://doi.org/10.1063/1.1461829>.
 
 # Examples
 
@@ -57,7 +57,7 @@ Calculate water dissociation constant (pK_w) as a function of temperature.
 
 [BL06] Bandura, A. V. and Lvov, S. N. (2006). The Ionization Constant of Water
     over Wide Ranges of Temperature and Density. *J. Phys. Chem. Ref. Data*,
-    35, 15--30. <https://doi.org/10.1063/1.1928231>
+    35, 15--30. <https://doi.org/10.1063/1.1928231>.
 
 # Examples
 

@@ -1,12 +1,20 @@
-"""Types of the soil grid."""
+"""Soil grid types."""
 module SoilGrid
 
 using DataFrames
 
-export AbstractSoilGrid, FVGrid, getprofile, setprofile!, addprofile!
+export AbstractSoilGrid, FVGrid, getprofile, setprofile!, addprofile!,
+    delprofile!, validategrid
 
 
-"""An abstract supertype for soil grids."""
+"""USDA soil texture classification."""
+const textures = ("sand", "loamy sand",
+                  "sandy loam", "silt loam", "loam",
+                  "sandy clay loam", "silty clay loam", "clay loam",
+                  "sandy clay", "silty clay", "clay")
+
+
+"""Abstract supertype for all soil grids."""
 abstract type AbstractSoilGrid end
 
 
@@ -38,7 +46,7 @@ struct FVGrid <: AbstractSoilGrid
             gridfields, ["grid_node", "grid_top", "grid_bottom", "grid_size"])
 
         if level <= 0
-            throw(ArgumentError("Number of grid levels must be positive!"))
+            throw(DomainError("Number of grid levels must be positive!"))
         end
 
         if top == bottom
@@ -68,8 +76,12 @@ struct FVGrid <: AbstractSoilGrid
 end
 
 
-"""Access the vertical profile of a variable in a soil grid."""
-function getprofile(g::T, name::Symbol) where T <: AbstractSoilGrid
+"""
+    getprofile(g::AbstractSoilGrid, name::Symbol)
+
+Access the vertical profile of a variable in a soil grid.
+"""
+function getprofile(g::AbstractSoilGrid, name::Symbol)
     if name in g.profiles.colindex.names
         return g.profiles[name]
     else
@@ -78,8 +90,12 @@ function getprofile(g::T, name::Symbol) where T <: AbstractSoilGrid
 end
 
 
-"""Set the vertical profile of a variable in a soil grid."""
-function setprofile!(g::T, name::Symbol, val) where T <: AbstractSoilGrid
+"""
+    setprofile!(g::AbstractSoilGrid, name::Symbol, val)
+
+Set the vertical profile of a variable in a soil grid.
+"""
+function setprofile!(g::AbstractSoilGrid, name::Symbol, val)
     if name in g.profiles.colindex.names
         g.profiles[name] = val
     else
@@ -88,8 +104,12 @@ function setprofile!(g::T, name::Symbol, val) where T <: AbstractSoilGrid
 end
 
 
-"""Add the vertical profile of a variable in a soil grid."""
-function addprofile!(g::T, name::Symbol, val=0.0) where T <: AbstractSoilGrid
+"""
+    addprofile!(g::AbstractSoilGrid, name::Symbol[, val=NaN])
+
+Add the vertical profile of a variable in a soil grid.
+"""
+function addprofile!(g::AbstractSoilGrid, name::Symbol, val=NaN)
     if name in g.profiles.colindex.names
         throw(ArgumentError(
             "The attribute \"$name\" already exists in the soil grid!"))
@@ -99,8 +119,12 @@ function addprofile!(g::T, name::Symbol, val=0.0) where T <: AbstractSoilGrid
 end
 
 
-"""Remove the vertical profile of a variable in a soil grid."""
-function delprofile!(g::T, name::Symbol) where T <: AbstractSoilGrid
+"""
+    delprofile!(g::AbstractSoilGrid, name::Symbol)
+
+Remove the vertical profile of a variable in a soil grid.
+"""
+function delprofile!(g::AbstractSoilGrid, name::Symbol)
     if name in g.profiles.colindex.names
         delete!(g.profiles, name)
     else
@@ -128,6 +152,25 @@ function initgrid!(g::FVGrid)
     setprofile!(g, :grid_size, grid_size)
     setprofile!(g, :grid_bottom, grid_bottom)
     setprofile!(g, :grid_top, grid_top)
+end
+
+
+"""
+    validategrid(g::AbstractSoilGrid)
+
+Check if the soil grid specifications meet the requirements for calculation.
+"""
+function validategrid(g::AbstractSoilGrid)
+    if !(g.texture in textures)
+        throw(ArgumentError("Soil texture \"", g.texture, "\" not supported!"))
+    end
+
+    required_fields = (:temp, :moisture, :porosity)
+    for col in required_fields
+        if !(col in g.profiles.colindex.names)
+            throw(ArgumentError("Missing required field \"$col\"!"))
+        end
+    end
 end
 
 

@@ -4,9 +4,7 @@ using Base.Test
 using SoilTracers: Constants
 
 
-# test global constants
-
-@time @testset "Test physical constants" begin
+@time @testset "Physical constants" begin
     @test typeof(Constants.T_0) <: AbstractFloat
     @test isapprox(Constants.T_0, 273.15)
 

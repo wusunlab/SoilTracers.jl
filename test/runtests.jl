@@ -5,11 +5,13 @@ using SoilTracers
 
 anyerrors = false
 
-tests = ["consts.jl"]
-        #  "test_physchem/test_diffus.jl",
-        #  "test_physchem/test_solub.jl",
-        #  "test_physchem/test_water.jl",
-        #  "test_physchem/test_rxn.jl"]
+tests = ["consts.jl",
+         "physchem/thermodyn.jl",
+         "physchem/diffus.jl",
+         "physchem/solub.jl",
+         "physchem/water.jl",
+         "physchem/rxn.jl",
+         "physchem/physchem.jl"]
 
 
 println("Running tests:")
@@ -25,15 +27,6 @@ for t in tests
         showerror(stdout, e, backtrace())
     end
 end
-
-
-@time @testset "Test PhysChem functions" begin
-    include("test_physchem/test_diffus.jl")
-    include("test_physchem/test_solub.jl")
-    include("test_physchem/test_water.jl")
-    include("test_physchem/test_rxn.jl")
-end
-
 
 if anyerrors
     throw(error("Tests failed"))

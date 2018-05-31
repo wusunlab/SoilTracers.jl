@@ -1,7 +1,6 @@
 module TestSoilGrid
 
 using Base.Test
-using DataFrames
 using SoilTracers.SoilGrid
 
 
@@ -49,7 +48,6 @@ end
     # getprofile
     co2_profile = getprofile(grid, :co2)
     @test typeof(co2_profile) <: AbstractArray
-    @test typeof(co2_profile) <: DataArray
     @test length(co2_profile) == grid.level
     @test_throws ArgumentError getprofile(grid, :cos)
 

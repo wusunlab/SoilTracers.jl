@@ -6,6 +6,7 @@ using SoilTracers
 anyerrors = false
 
 tests = ["consts.jl",
+         "soilgrid/soilgrid.jl",
          "physchem/thermodyn.jl",
          "physchem/diffus.jl",
          "physchem/solub.jl",

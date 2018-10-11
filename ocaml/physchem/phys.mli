@@ -22,6 +22,10 @@ val water_dissoc : float -> float
 (** [water_dissoc t] calculates water dissociation constant (p{i K}{_ w}) from
     temperature [t] (K). *)
 
+val air_concentration : float -> float -> float
+(** [air_concentration t p] calculates the molar concentration of air
+    (mol m{^ -3}) from temperature [t] (K) and pressure [p] (Pa). *)
+
 val diffus_air_params : (string * float) list
 (** Gas diffusivities in air under STP condition (m{^ 2} s{^ -1}). *)
 

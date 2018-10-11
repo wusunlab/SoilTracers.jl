@@ -29,6 +29,8 @@ let water_dissoc t =
                   (0.642044 -. 56.8534 /. t -. 0.375754 *. rho_w)) +.
         pK_w_G +. 2.0 *. log10(molar_weight_water)
 
+let air_concentration t p = p /. (gas_constant *. t)
+
 let diffus_air_params = [
   "h2o", 2.178e-5;
   "co2", 1.381e-5;

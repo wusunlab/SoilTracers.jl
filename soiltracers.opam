@@ -1,0 +1,22 @@
+opam-version: "2.0"
+name: "soiltracers"
+version: "dev"
+synopsis: "A soil tracer model"
+maintainer: "Wu Sun <37353134+wusunlab@users.noreply.github.com>"
+authors: "Wu Sun <37353134+wusunlab@users.noreply.github.com>"
+license: "MIT"
+homepage: "https://github.com/wusunlab/soiltracers"
+bug-reports: "https://github.com/wusunlab/soiltracers"
+depends: [
+  "base"
+  "core"
+  "owl"
+]
+build: [
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+]
+install: []
+remove: []
+dev-repo: "git+https://github.com/wusunlab/soiltracers"
+

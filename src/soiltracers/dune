@@ -1,0 +1,5 @@
+(library
+  (name soiltracers)
+  (public_name soiltracers)
+  (modes native)
+  (libraries soiltracers_grid))

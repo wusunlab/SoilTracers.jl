@@ -1,8 +1,8 @@
-# SoilTracers
+# soiltracers
 
 A model to simulate soil–atmosphere exchange of trace gases.
 
-**Warning: under construction! Feature not complete!**
+**Warning: under construction! Features not complete!**
 
 This ~~is~~ will be an ~~Julia~~ OCaml implementation of [Sun et al.
 (2015)](https://doi.org/10.5194/gmd-8-3055-2015) and [Ogée et al.
@@ -13,16 +13,16 @@ N<sub>2</sub>O, etc.).
 
 ## Dependencies
 
-* OCaml >= 4.06
-* Base and Core
-* Owl
+* [OCaml](http://ocaml.org/) >= 4.06
+* [Base](https://github.com/janestreet/base)
+* [Owl](https://github.com/owlbarn/owl/)
 
 ## Installation
 
 Clone the git repository
 
 ```shell
-git clone "https://github.com/wusunlab/SoilTracers.git"
+git clone "https://github.com/wusunlab/soiltracers.git"
 ```
 
 ## License

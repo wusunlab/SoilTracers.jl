@@ -1,5 +1,5 @@
 (library
   (name soiltracers)
   (public_name soiltracers)
-  (modes native)
+  (wrapped false)
   (libraries soiltracers_grid))

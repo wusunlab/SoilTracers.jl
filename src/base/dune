@@ -1,5 +1,4 @@
 (library
   (name soiltracers_grid)
   (public_name soiltracers.grid)
-  (modes native)
   (libraries base owl))

@@ -1,3 +1,5 @@
+open Owl
+
 (** Evolve the concentration profile by one time step. *)
 val evolver_CN :
   Mat.mat ->

@@ -1,12 +1,10 @@
-# SoilTracers.jl
-
-[![Travis](https://travis-ci.org/wusunlab/SoilTracers.jl.svg?branch=master)](https://travis-ci.org/wusunlab/SoilTracers.jl)
+# SoilTracers
 
 A model to simulate soil–atmosphere exchange of trace gases.
 
-**Warning: under construction; no stable build yet!**
+**Warning: under construction! Feature not complete!**
 
-This ~~is~~ will be a Julia implementation of [Sun et al.
+This ~~is~~ will be an ~~Julia~~ OCaml implementation of [Sun et al.
 (2015)](https://doi.org/10.5194/gmd-8-3055-2015) and [Ogée et al.
 (2016)](https://doi.org/10.5194/bg-13-2221-2016) models of soil carbonyl
 sulfide (COS) exchange. The current plan is to have CO<sub>2</sub> and COS as
@@ -15,15 +13,16 @@ N<sub>2</sub>O, etc.).
 
 ## Dependencies
 
-* Julia >= 0.6
-* DataFrames.jl >= 0.10.1
+* OCaml >= 4.06
+* Base and Core
+* Owl
 
 ## Installation
 
-Run the following command in the Julia REPL to install the development version
+Clone the git repository
 
-```julia
-Pkg.clone("https://github.com/wusunlab/SoilTracers.jl")
+```shell
+git clone "https://github.com/wusunlab/SoilTracers.git"
 ```
 
 ## License

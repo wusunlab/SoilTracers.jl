@@ -1,4 +1,5 @@
 open Grid_sig
+open Grid_exn
 
 let textures =
   [ "sand"
@@ -40,7 +41,7 @@ module FVGrid : SOILGRID with type col = float array = struct
     Owl.Dataframe.(
       if Array.mem var (get_heads frame) then
         unpack_float_series (get_col_by_name frame var)
-      else raise (Failure "profile not found"))
+      else raise (Grid_error ("profile of " ^ var ^ " not found")))
 
   let set_profile_ grid var values =
     let frame = grid.profiles in
@@ -52,13 +53,13 @@ module FVGrid : SOILGRID with type col = float array = struct
         for i = 0 to row_num frame do
           set frame i var_id (pack_float values.(i))
         done
-      else raise (Failure "profile not found"))
+      else raise (Grid_error ("profile of " ^ var ^ " not found")))
 
   let add_profile_ grid var values =
     let frame = grid.profiles in
     Owl.Dataframe.(
       if Array.mem var (get_heads frame) then
-        raise (Failure "profile already exists")
+        raise (Grid_error ("profile of " ^ var ^ " already exists"))
       else append_col frame (pack_float_series values) var)
 
   let del_profile_ grid var =
@@ -66,7 +67,7 @@ module FVGrid : SOILGRID with type col = float array = struct
     Owl.Dataframe.(
       if Array.mem var (get_heads frame) then
         remove_col frame (head_to_id frame var)
-      else raise (Failure "profile not found"))
+      else raise (Grid_error ("profile of " ^ var ^ " not found")))
 
   (* helper functions to initialize grid positions *)
   let init_grid_node level top bottom =
@@ -106,7 +107,7 @@ module FVGrid : SOILGRID with type col = float array = struct
     , [|grid_node; grid_size; grid_bottom; grid_top|] )
 
   let make_grid ~level ~top ~bottom ~texture ~fields =
-    if level <= 0 || top = bottom then raise (Failure "incorrect grid spec")
+    if level <= 0 || top = bottom then raise (Grid_error "incorrect grid spec")
     else
       let init_series () =
         Owl.Dataframe.pack_float_series (Array.make level 0.)
@@ -129,11 +130,11 @@ module FVGrid : SOILGRID with type col = float array = struct
       ; profiles= Owl.Dataframe.(make ~data:all_data all_fields) }
 
   let validate_grid grid =
-    (List.mem grid.texture textures || raise (Failure "grid texture illegal"))
+    (List.mem grid.texture textures || raise (Grid_error "illegal texture"))
     && ( exist_profile grid "temp"
-       || raise (Failure "temperature profile not found") )
+       || raise (Grid_error "temperature profile not found") )
     && ( exist_profile grid "moisture"
-       || raise (Failure "moisture profile not found") )
+       || raise (Grid_error "moisture profile not found") )
     && ( exist_profile grid "porosity"
-       || raise (Failure "moisture profile not found") )
+       || raise (Grid_error "porosity profile not found") )
 end

@@ -25,19 +25,17 @@ let hydrolysis_cos t pH =
   (2.11834513803e-5 *. exp (-10418.3722377 *. t_diff))
   +. (14.16881179 *. exp (-6469.11889197 *. t_diff) *. c_OH)
 
-let q10_fun t t_ref q10 = q10 ** (0.1 *. (t -. t_ref))
+let q10_fun q10 t t_ref = q10 ** (0.1 *. (t -. t_ref))
 
 (* a private helper function *)
-let f_enzyme_temp_dependence t delta_G_a delta_H_d delta_S_d =
+let f_enzyme_temp_dependence delta_G_a delta_H_d delta_S_d t =
   exp (~-.delta_G_a /. (gas_constant *. t))
   /. (1.0 +. exp ((delta_S_d -. (delta_H_d /. t)) /. gas_constant))
 
-let enzyme_temp_dependence t t_ref delta_G_a delta_H_d delta_S_d =
-  f_enzyme_temp_dependence t delta_G_a delta_H_d delta_S_d
-  /. f_enzyme_temp_dependence t_ref delta_G_a delta_H_d delta_S_d
+let enzyme_temp_dependence delta_G_a delta_H_d delta_S_d t t_ref =
+  f_enzyme_temp_dependence delta_G_a delta_H_d delta_S_d t
+  /. f_enzyme_temp_dependence delta_G_a delta_H_d delta_S_d t_ref
 
 let enzyme_temp_optimum delta_G_a delta_H_d delta_S_d =
   delta_H_d
   /. (delta_S_d +. (gas_constant *. log ((delta_H_d /. delta_G_a) -. 1.0)))
-
-(* TODO: co2 source from respiration *)

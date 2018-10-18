@@ -1,0 +1,4 @@
+(library
+  (name soiltracers_lib)
+  (public_name soiltracers.lib)
+  (libraries base))

@@ -11,11 +11,11 @@
     - \[MNT16a\] Mohr, P. J., Newell, D. B., and Taylor, B. N. (2016). CODATA
       recommended values of the fundamental physical constants: 2014. {i Rev.
       Mod. Phys.}, 88, 035009, 1--73.
-      {{: https://doi.org/10.1103/RevModPhys.88.035009 }  \[DOI\] }
+      {{: https://doi.org/10.1103/RevModPhys.88.035009} \[DOI\]}
     - \[MNT16b\] Mohr, P. J., Newell, D. B., and Taylor, B. N. (2016). CODATA
-      Recommended Values of the Fundamental Physical Constants: 2014. {i J.
+      recommended values of the fundamental physical constants: 2014. {i J.
       Phys. Chem. Ref. Data}, 45, 043102, 1--74.
-      {{: https://doi.org/10.1063/1.4954402 }  \[DOI\] }
+      {{: https://doi.org/10.1063/1.4954402} \[DOI\]}
 *)
 
 (** Zero Celsius (K). *)

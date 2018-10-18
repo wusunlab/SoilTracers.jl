@@ -4,9 +4,47 @@
  * License: MIT
  *)
 
-(** A collection of basic physics functions. *)
+(** A collection of basic physics functions.
 
-open Constants
+    References
+
+    - \[WP02\] Wagner, W. and Pruß, A. (2002). The IAPWS Formulation 1995 for
+      the thermodynamic properties of ordinary water substance for general and
+      scientific use. {i J. Phys. Chem. Ref. Data}, 31, 387--535.
+      {{: https://doi.org/10.1063/1.1461829} \[DOI\]}
+    - \[BL06\] Bandura, A. V. and Lvov, S. N. (2006). The ionization constant
+      of water over wide ranges of temperature and density. {i J. Phys. Chem.
+      Ref. Data}, 35, 15--30. {{: https://doi.org/10.1063/1.1928231} \[DOI\]}
+    - \[M98\] Massman, W. J. (1998). A review of the molecular diffusivities of
+      H{_ 2}O, CO{_ 2}, CH{_ 4}, CO, O{_ 3}, SO{_ 2}, NH{_ 3}, N{_ 2}O, NO, and
+      NO{_ 2} in air, O{_ 2} and N{_ 2} near STP. {i Atmos. Environ.}, 32(6),
+      1111--1127. {{: https://doi.org/10.1016/S1352-2310(97)00391-9} \[DOI\]}
+    - \[SKS10\] Seibt, U., Kesselmeier, J., Sandoval-Soto, L., Kuhn, U., and
+      Berry, J. A. (2010). A kinetic analysis of leaf uptake of COS and its
+      relation to transpiration, photosynthesis and carbon isotope
+      fractionation. {i Biogeosci.}, 7, 333--341.
+      {{: https://doi.org/10.5194/bg-7-333-2010} \[DOI\]}
+    - \[JHD87\] Jähne, B., Heinz, G., and Dietrich, W. (1987). Measurement of
+      the diffusion coefficients of sparingly soluble gases in water. {i J.
+      Geophys. Res.}, 92(C10), 10767--10776.
+      {{: https://doi.org/10.1029/JC092iC10p10767} \[DOI\]}
+    - \[WH68\] Wise, D. L. and Houghton, G. (1968). Diffusion coefficients of
+      neon, krypton, xenon, carbon monoxide and nitric oxide in water at 10--6O
+      C. {i Chem. Eng. Sci.}, 23, 1211--1216.
+      {{: https://doi.org/10.1016/0009-2509(68)89029-3} \[DOI\]}
+    - \[UFU96\] Ulshöfer, V. S., Flöck, O. R., Uher, G., and Andreae, M. O.
+      (1996). Photochemical production and air-sea exchange of sulfide in the
+      eastern Mediterranean Sea. {i Mar. Chem.}, 53, 25--39.
+      {{: https://doi.org/10.1016/0304-4203(96)00010-2} \[DOI\]}
+    - \[CH78\] Clapp, R. B. and Hornberger, G. M. (1978). Empirical equations
+      for some soil hydraulic properties. {i Water Resources Res.}, 14(4),
+      601--604. {{: https://doi.org/10.1029/WR014i004p00601} \[DOI\]}
+    - \[MOK03\] Moldrup, P., Olesen, T., Komatsu, T, Yoshikawa, S, Schjønning,
+      P, and Rolston, D. E. (2003). Modeling diffusion and reaction in soils:
+      X. A unifying model for solute and gas diffusivity in unsaturated soil.
+      {i Soil Sci.}, 168(5), 321--337.
+      {{: https://doi.org/10.1097/01.ss.0000070907.55992.3c} \[DOI\]}
+*)
 
 val c2k : float -> float
 (** [c2k t] converts temperature [t] from Celsius to Kelvin. *)

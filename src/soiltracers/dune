@@ -2,4 +2,4 @@
   (name soiltracers)
   (public_name soiltracers)
   (wrapped false)
-  (libraries soiltracers_grid))
+  (libraries soiltracers_grid soiltracers_tracers))
